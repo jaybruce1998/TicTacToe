@@ -1,0 +1,61 @@
+<html>
+	<head><title>TicTacToe</title></head>
+	<body style="font-size:24px;font-family:Courier">
+		<script type="text/javascript">
+			let a, p;
+			function start()
+			{
+				a=[];
+				for(let i=0; i<3; i++)
+				{
+					let t=[];
+					for(let j=0; j<3; j++)
+					{
+						t.push(document.getElementById(""+i+j));
+						t[j].innerHTML="&nbsp;";
+					}
+					a.push(t);
+				}
+				p="X";
+			}
+			function draw()
+			{
+				for(let i=0; i<3; i++)
+					for(let j=0; j<3; j++)
+						if(a[i][j].innerHTML=="&nbsp;")
+							return false;
+				return true;
+			}
+			function place(r, c)
+			{
+				if(!p)
+				{
+					alert("You are not in a game!");
+					return;
+				}
+				if(a[r][c].innerHTML!="&nbsp;")
+				{
+					alert("That square is already taken!");
+					return;
+				}
+				a[r][c].innerHTML=p;
+				if(draw())
+				{
+					p=false;
+					alert("It's a draw!");
+				}
+				else if(a[r][0].innerHTML==p&&a[r][1].innerHTML==p&&a[r][2].innerHTML==p||a[0][c].innerHTML==p&&a[1][c].innerHTML==p&&a[2][c].innerHTML==p||a[0][0].innerHTML==p&&a[1][1].innerHTML==p&&a[2][2].innerHTML==p||a[0][2].innerHTML==p&&a[1][1].innerHTML==p&&a[2][0].innerHTML==p)
+				{
+					p=false;
+					alert("You won!");
+				}
+				else
+					p=p=="X"?"O":"X";
+			}
+		</script>
+		<span id="00" onclick="place(this.id[0], this.id[1])">X</span>|<span id="01" onclick="place(this.id[0], this.id[1])">X</span>|<span id="02" onclick="place(this.id[0], this.id[1])">X</span><br/>-----<br/>
+		<span id="10" onclick="place(this.id[0], this.id[1])">X</span>|<span id="11" onclick="place(this.id[0], this.id[1])">X</span>|<span id="12" onclick="place(this.id[0], this.id[1])">X</span><br/>-----<br/>
+		<span id="20" onclick="place(this.id[0], this.id[1])">X</span>|<span id="21" onclick="place(this.id[0], this.id[1])">X</span>|<span id="22" onclick="place(this.id[0], this.id[1])">X</span></br/></br/>
+		<button onclick="start()">Start</button>
+	</body>
+</html>
